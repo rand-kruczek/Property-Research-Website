@@ -1,0 +1,14 @@
+.next/
+.sites-runtime/
+.vercel/
+node_modules/
+drizzle/
+build/
+examples/
+scripts/
+.agents/
+.codex/
+AGENTS.md
+CLAUDE.md
+QA.md
+RESUME.md
