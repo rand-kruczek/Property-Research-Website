@@ -7,6 +7,8 @@ export type SearchCenter = {
   precision: string;
 };
 
+export type SearchArea = { center: SearchCenter; miles: number };
+
 const EARTH_RADIUS_MILES = 3958.7613;
 
 export function parseCoordinates(input: string): Pick<SearchCenter, 'latitude' | 'longitude'> | null {
@@ -24,7 +26,7 @@ export function validRadiusMiles(value: string): number | null {
 }
 
 export function propertyCoordinates(property: Property): { latitude: number; longitude: number } | null {
-  if (property.latitude === '' || property.longitude === '' || property.latitude == null || property.longitude == null) return null;
+  if (String(property.latitude).trim() === '' || String(property.longitude).trim() === '' || property.latitude == null || property.longitude == null) return null;
   const latitude = Number(property.latitude);
   const longitude = Number(property.longitude);
   if (!Number.isFinite(latitude) || !Number.isFinite(longitude) || Math.abs(latitude) > 90 || Math.abs(longitude) > 180) return null;
@@ -43,4 +45,17 @@ export function distanceMiles(a: { latitude: number; longitude: number }, b: { l
 export function withinRadius(property: Property, center: SearchCenter, radiusMiles: number): boolean {
   const point = propertyCoordinates(property);
   return point !== null && distanceMiles(center, point) <= radiusMiles;
+}
+
+// The same result set powers the map, list, counts and filtered exports.
+export function filterByRadius(properties: Property[], area: SearchArea | null, nearestFirst = false): Property[] {
+  if (!area) return properties;
+  const matches = properties.flatMap(property => {
+    const point = propertyCoordinates(property);
+    if (!point) return [];
+    const distance = distanceMiles(area.center, point);
+    return distance <= area.miles ? [{ property, distance }] : [];
+  });
+  if (nearestFirst) matches.sort((a, b) => a.distance - b.distance || String(a.property.name).localeCompare(String(b.property.name)));
+  return matches.map(match => match.property);
 }

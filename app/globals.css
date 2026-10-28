@@ -181,3 +181,22 @@ html{color-scheme:light}.dark{color-scheme:dark;--background:#0d1722;--foregroun
 .dark .leaflet-container{background:#14212c}
 .dark .leaflet-control-attribution{background:#172938e6;color:#b4c8d5}
 .dark .leaflet-control-attribution a{color:#76c8c6}
+
+/* Location controls stay available in map, split, list and mobile views. */
+.radius-filter{margin:14px 36px 12px;padding:16px 18px;border:1px solid var(--border);border-radius:10px;background:var(--card);color:var(--foreground)}
+.radius-heading{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.radius-heading strong{font-size:15px}.radius-heading>span{font-size:12px;color:var(--muted-foreground)}
+.radius-filter form{display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap}
+.radius-filter label{display:flex;flex-direction:column;gap:5px;font-size:12px;color:var(--muted-foreground)}
+.radius-location{flex:1;min-width:220px}.radius-miles{width:115px}
+.radius-filter input{background:var(--background);color:var(--foreground);border:1px solid var(--border);border-radius:6px;padding:10px 12px;font-size:14px;width:100%;min-height:42px}
+.radius-filter input:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
+.radius-filter form>button{min-height:42px}.radius-presets{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-top:10px}
+.radius-presets button{padding:4px 10px;font-size:12px;border:1px solid var(--border);border-radius:999px}
+.radius-presets button[aria-pressed=true]{background:var(--primary);color:var(--primary-foreground)}
+.radius-presets small{font-size:11px;color:var(--muted-foreground);margin-left:auto}
+.radius-active{font-size:12px;line-height:1.6;margin-top:10px;overflow-wrap:anywhere}
+.radius-error{font-size:13px;color:#b42318;margin-top:10px}.dark .radius-error{color:#ffb9b3}
+.property-distance{font-size:12px;color:var(--primary);font-weight:600}.dark .property-distance{color:#8ed0ce}
+.surface aside{overflow-y:auto}.property-list{flex:1 0 160px}
+@media(max-width:760px){.radius-filter{margin:12px 16px;padding:14px}.radius-location{flex-basis:100%;min-width:0}.radius-miles{flex:1;min-width:90px}.radius-filter form>button{flex:1}.radius-presets small{margin:4px 0 0;width:100%}}
