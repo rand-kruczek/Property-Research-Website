@@ -54,8 +54,11 @@ next-env.d.ts
 /db/
 /drizzle/
 /examples/
-/scripts/
-/vendor/
+/scripts/*
+!/scripts/radius.test.mjs
+/vendor/*
+!/vendor/shadcn-tailwind-4.13.0.css
+!/vendor/shadcn-tailwind-4.13.0.LICENSE.md
 /cloudflare-env.d.ts
 /drizzle.config.ts
 /vite.config.ts
